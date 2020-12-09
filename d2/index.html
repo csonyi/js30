@@ -62,13 +62,52 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform: rotate(90deg);
+      transform-origin: 100%;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.39, 2.6, 0.58, 1);
+    }
+
+    /*
+      Zavart hogy mindegyik mutato ugyan olyan hosszu...
+    */
+    .hour-hand {
+      width: 30%;
+      left: 20%;
+    }
+
+    .min-hand {
+      width: 40%;
+      left: 10%;
     }
 
   </style>
 
   <script>
+    function $(selector) {
+      return document.querySelector(selector)
+    }
 
+    function $$(selector) {
+      return document.querySelectorAll(selector)
+    }
 
+    function setDate() {
+      const now = new Date()
+      const hourDegrees = 90 + (((now.getHours() % 12) / 24) * 360)
+      const minuteDegrees = 90 + ((now.getMinutes() / 60) * 360)
+      const secondDegrees = 90 + ((now.getSeconds() / 60) * 360)
+
+      const hourHand = $('.hour-hand')
+      const minuteHand = $('.min-hand')
+      const secondHand = $('.second-hand')
+
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`
+      minuteHand.style.transform = `rotate(${minuteDegrees}deg)`
+      secondHand.style.transform = `rotate(${secondDegrees}deg)`
+    }
+
+    setInterval(setDate, 1000)
   </script>
 </body>
 </html>
