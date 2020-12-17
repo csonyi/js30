@@ -96,6 +96,31 @@
   </div>
 
 <script>
+  const checkboxes = new Array(...document.querySelectorAll('.item input'))
+
+  let prevCheckbox = null
+
+  function selectCheckbox(e) {
+    let prevCheckboxIndex = checkboxes.indexOf(prevCheckbox)
+    let currentCheckboxIndex = checkboxes.indexOf(this)
+    if(prevCheckbox == this) return
+
+    if(e.shiftKey) {
+      let toCheck = (prevCheckboxIndex < currentCheckboxIndex)
+        ? checkboxes.slice(prevCheckboxIndex, currentCheckboxIndex)
+        : checkboxes.slice(currentCheckboxIndex, prevCheckboxIndex)
+
+      toCheck.forEach(checkbox => {
+        checkbox.checked = true
+      });
+    }
+    prevCheckbox = this
+  }
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', selectCheckbox)
+  })
+
 </script>
 </body>
 </html>
