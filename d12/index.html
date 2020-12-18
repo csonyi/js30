@@ -6,7 +6,38 @@
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+<style>
+  h1 {
+    color: red;
+  }
+</style>
 <script>
+  // 11 key sequence
+  const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13]
+  let keys = []
+
+  function keySequenceHandler(e) {
+    keys.push(e.keyCode)
+    if(keys.length >= 11) {
+      if(arraysEqual(keys, KONAMI_CODE)) {
+        cornify_add()
+        keys = []
+      }
+      else keys = []
+    }
+    console.log(KONAMI_CODE)
+    console.log(keys)
+  }
+
+  function arraysEqual(arr1, arr2) {
+    if(arr1.length !== arr2.length) return false
+    for(let i = 0; i < arr1.length; i++) {
+      if(arr1[i] !== arr2[i]) return false
+    }
+    return true
+  }
+
+  window.addEventListener('keydown', keySequenceHandler)
 </script>
 </body>
 </html>
