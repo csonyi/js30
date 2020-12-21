@@ -34,17 +34,17 @@ function updateProgressBar(e) {
 }
 
 function handleScrub(e) {
-    // if(!mouseDown) return
     const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration
     video.currentTime = scrubTime
 }
 
 function toggleFullscreen(e) {
     if(document.fullscreenElement) {
-        if (document.exitFullscreen) document.exitFullscreen();
+        if (document.exitFullscreen) document.exitFullscreen()
     } else {
-        player.requestFullscreen();
+        player.requestFullscreen()
     }
+}
     
 video.addEventListener('click', togglePlay)
 video.addEventListener('play', updatePlayButton)
@@ -55,8 +55,7 @@ playButton.addEventListener('click', togglePlay)
 
 skipButtons.forEach(btn => {
     btn.addEventListener('click', skip)
-});
-
+})
 
 sliders.forEach(slider => {
     slider.addEventListener('change', handleSliderUpdate)
