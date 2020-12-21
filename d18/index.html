@@ -182,6 +182,19 @@
     </li>
   </ul>
 <script>
+  const videos = [...document.querySelectorAll('.videos li')]
+
+  const cumulativeTime = videos.reduce((tally, video) => {
+    const time = video.dataset.time.split(':').map(parseFloat)
+    const seconds = (60 * time[0]) + time[1]
+    return tally + seconds
+  }, 0)
+
+  const hours = Math.floor(cumulativeTime / 3600)
+  const minutes = Math.floor((cumulativeTime % 3600) / 60)
+  const seconds = Math.floor(((cumulativeTime % 3600) % 60))
+
+  console.log(`${hours}:${minutes}:${seconds}`)
 </script>
 </body>
 </html>
