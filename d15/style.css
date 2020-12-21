@@ -76,6 +76,7 @@ h2 {
 
 .add-items input {
   padding: 10px;
+  margin-bottom: 5px;
   outline: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
