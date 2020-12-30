@@ -15,6 +15,46 @@
   </div>
 
 <script>
+  const player = document.querySelector('.flex')
+  const speed = document.querySelector('.speed')
+  const speedBar = speed.querySelector('.speed-bar')
+
+  let isDragging = false
+  let startScrollPos = 16
+
+  function startDrag(e) {
+    isDragging = true
+
+    const playbackRate = calculatePlaybackRate((e.offsetY / this.offsetHeight), 0.4, 4)
+
+    player['playbackRate'] = 
+    speedBar.style.height = `${e.offsetY}px`
+    speedBar.textContent = `${playbackRate}x`
+  }
+
+  function drag(e) {
+    e.preventDefault()
+    if(!isDragging) return
+
+    const playbackRate = calculatePlaybackRate((e.offsetY / this.offsetHeight), 0.4, 4)
+
+    player['playbackRate'] = calculatePlaybackRate((e.offsetY / this.offsetHeight), 0.4, 4)
+    speedBar.style.height = `${e.offsetY}px`
+    speedBar.textContent = `${playbackRate}x`
+  }
+
+  function endDrag(e) {
+    isDragging = false
+  }
+
+  function calculatePlaybackRate(percentage, min, max) {
+    return Math.round((percentage * (max - min) + min) * 100) / 100
+  }
+
+  speed.addEventListener('mouseleave', endDrag) 
+  speed.addEventListener('mousedown', startDrag)
+  speed.addEventListener('mousemove', drag)
+  speed.addEventListener('mouseup', endDrag)
 </script>
 </body>
 </html>
