@@ -29,7 +29,7 @@ function timer(time) {
     timerID = setInterval(() => {
         if(remainingTime <= 0) {
             alert('Timer ended!')
-            clearInterval(timer)
+            clearInterval(timerID)
             timeLeft.textContent = ''
             endTime.textContent = ''
             return
